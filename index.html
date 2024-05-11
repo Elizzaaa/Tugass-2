@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUGAS PERTEMUAN 2</title>
+  <!-- Add Vue.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    /* Styling for highlighted text */
+    .highlight {
+      color: rgb(211, 153, 137);
+      font-weight: bold;
+    }
+    
+    /* Styling for header text */
+    .header-text h1 {
+      margin-top: 20%;
+      /* You can add more styles here if needed */
+    }
+
+    /* Styling for flexbox row */
+    .row { 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* You can add more styles here if needed */
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1><center>{{ pageTitle }}</center></h1>
+    <p v-bind:class="{ 'highlight': isHighlighted }">Silahkan masukkan apa yang anda ingin masukkan:</p>
+    <input type="text" v-model="inputText" @input="updateText">
+    <p v-bind:style="{ color: textColor }">Teks yang telah dimasukkan: {{ inputText }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        pageTitle: 'Selamat Datang Diweb Elizza:)',
+        isHighlighted: false,
+        inputText: '',
+        textColor: 'black'
+      },
+      methods: {
+        updateText: function(event) {
+          this.inputText = event.target.value;
+          if (this.inputText.length > 10) {
+            this.isHighlighted = true;
+            this.textColor = 'pink';
+          } else {
+            this.isHighlighted = false;
+            this.textColor = 'blue';
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
